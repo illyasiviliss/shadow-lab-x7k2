@@ -86,6 +86,7 @@ button.b:disabled{opacity:.32}
 </style>
 </head>
 <body>
+<div style="position:sticky;top:0;z-index:99;background:#1d3557;color:#fff;padding:10px 14px;font:15px/1.4 -apple-system,sans-serif;text-align:center"><a href="guailing-smu-full.html" style="color:#8fd3c7;text-decoration:none">→ 这里是 45 句试验版，完整版（41 分钟 / 343 句）点这里</a></div>
 <header>
   <span class="t">谷爱凌 · SMU 对谈</span>
   <button id="save" onclick="fetch(location.href).then(r=>r.blob()).then(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=document.title.replace(/·/g,'-').replace(/\s+/g,'')+'.html';document.body.appendChild(a);a.click();a.remove()}).catch(e=>alert('存不下来：'+e.message))">存到手机</button>
