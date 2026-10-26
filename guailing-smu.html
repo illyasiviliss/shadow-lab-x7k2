@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="zh">
 <head>
+<meta name="robots" content="noindex,nofollow,noarchive">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -172,8 +173,9 @@ function esc(s){ return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;') }
 
 /* ---- audio: base64 -> Blob URL. iOS Safari will not seek a data: URI ---- */
 (function initAudio(){
-  try {
-    au.src = 'audio.mp3'; au.load();
+  au.src = 'audio.mp3';
+  au.load();
+})();
 au.addEventListener('error', () => say('音频加载失败'));
 
 /* ---- marked words / chunks ---- */
