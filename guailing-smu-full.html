@@ -466,6 +466,9 @@ document.getElementById('zhbox').onclick = function(){
   this.classList.toggle('masked');
 };
 
+/* 记住最后在读的材料：材料列表页的“点空白返回”靠它 */
+try { localStorage.setItem('shadowing:last', location.pathname) } catch(e){}
+
 /* ---- 大纲：按主题跳，343 句不用从上往下翻 ---- */
 (function buildToc(){
   if (!OUTLINE.length) { document.getElementById('toc').remove(); return }

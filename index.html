@@ -2,8 +2,30 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <title>跟读材料</title>
-<style>body{font:16px/1.7 -apple-system,sans-serif;max-width:640px;margin:8vh auto;padding:0 20px;background:#12131a;color:#e8e8ea}a.item{color:#8fd3c7;text-decoration:none;display:block;padding:14px 16px;margin:10px 0;border:1px solid #2a2c38;border-radius:10px}a.item span{display:block;color:#8b8d99;font-size:13px;margin-top:4px}</style>
-</head><body><h2>影子跟读</h2>
+<style>
+html,body{height:100%}
+body{font:16px/1.7 -apple-system,sans-serif;max-width:640px;margin:0 auto;padding:8vh 20px;background:#12131a;color:#e8e8ea;-webkit-tap-highlight-color:transparent}
+h2{margin:0 0 4px}
+.tip{color:#5c6169;font-size:12.5px;margin:0 0 22px}
+a.item{color:#8fd3c7;text-decoration:none;display:block;padding:14px 16px;margin:10px 0;border:1px solid #2a2c38;border-radius:10px}
+a.item span{display:block;color:#8b8d99;font-size:13px;margin-top:4px}
+.back{color:#7f868f;font-size:13px;margin-top:26px}
+</style>
+</head><body>
+<h2>影子跟读</h2>
+<p class="tip">点材料进去练。进来以后点标题可以回到这里。</p>
 <a class="item" href="guailing-smu-full.html">谷爱凌 · SMU 对谈（完整版）<span>41 分钟 · 343 句 · 625 个语块 · 逐句画面 · 中文对照</span></a>
 <a class="item" href="guailing-smu.html">前 5 分钟（试验版）<span>45 句</span></a>
+<p class="back">返回刚才在练的那篇：点页面上任意空白处</p>
+<script>
+/* 点空白 = 回到刚才打开的材料（她 2026-10-30 的要求）。
+   用 localStorage 记的路径，而不是 history —— 她常常是从微信直接点开这个列表页，
+   那时 history 里没有上一页，history.back() 会把她带出微信。 */
+document.addEventListener('click', function(e){
+  if (e.target.closest('a')) return;
+  var last = null;
+  try { last = localStorage.getItem('shadowing:last') } catch(err){}
+  location.href = last || 'guailing-smu-full.html';
+});
+</script>
 </body></html>
