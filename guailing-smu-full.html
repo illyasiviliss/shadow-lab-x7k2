@@ -45,6 +45,7 @@ main{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px
 #hint{margin-top:14px;font-size:12px;color:#5c6169;line-height:1.7}
 #vid{display:none;width:calc(100% - 36px);margin:10px 18px 0;border-radius:12px;background:#000;
   aspect-ratio:16/9;object-fit:cover}
+#vfull{display:none;margin:6px 18px 0;text-align:right;font-size:12.5px;color:#7f868f}
 #zhbox{margin:14px 18px 0;padding:11px 13px;border:1px dashed var(--line);border-radius:10px;cursor:pointer}
 #zhbox .zhlbl{display:block;font-size:11.5px;letter-spacing:.06em;color:#7f868f;margin-bottom:5px}
 #zhbox .zhtext{display:block;font-size:15.5px;line-height:1.6;color:#d7dae0}
@@ -111,6 +112,7 @@ button.b:disabled{opacity:.32}
 <main id="scroll">
   <div id="idx"></div>
   <video id="vid" muted playsinline preload="metadata" webkit-playsinline></video>
+<div id="vfull" style="display:none">⤢ 放大画面</div>
   <div id="cue"></div>
   <div id="zhbox" class="masked"><span class="zhlbl">中文 · 点一下看</span><span class="zhtext"></span></div>
   <div id="hint">
@@ -285,8 +287,9 @@ function render(){
   const v = document.getElementById('vid');
   if (s.clip){
     v.style.display = 'block';
+    document.getElementById('vfull').style.display = 'block';
     if (v.dataset.i !== String(cur)){ v.dataset.i = cur; v.src = s.clip; v.load() }
-  } else { v.style.display = 'none' }
+  } else { v.style.display = 'none'; document.getElementById('vfull').style.display = 'none' }
 
   const zb = document.getElementById('zhbox');
   if (s.zh){
@@ -449,6 +452,14 @@ document.getElementById('wclose').onclick = () => document.getElementById('words
 idxEl.addEventListener('click', () => {
   if (marks.size){ buildWordList(); document.getElementById('words').style.display = 'block' }
 });
+
+/* 横屏小视频在竖屏手机里太小 —— 点一下走 iOS 的原生全屏播放器 */
+document.getElementById('vfull').onclick = function(){
+  const v = document.getElementById('vid');
+  if (v.webkitEnterFullscreen) { try { v.webkitEnterFullscreen(); return } catch(e){} }
+  if (v.requestFullscreen) { v.requestFullscreen().catch(() => {}); return }
+  say('这台设备不支持放大，把手机横过来吧');
+};
 
 document.getElementById('zhbox').onclick = function(){
   this.classList.toggle('masked');
