@@ -25,8 +25,9 @@ header{
   display:flex;align-items:center;gap:8px;padding:10px 12px;
   border-bottom:1px solid var(--line);flex:0 0 auto;
 }
-header .t{font-size:13px;color:var(--dim);flex:1 1 auto;min-width:0;
+header a.t{font-size:13px;color:var(--dim);flex:1 1 auto;min-width:0;text-decoration:none;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+header a.t:active{color:var(--fg)}
 header button{
   flex:0 0 auto;background:none;border:1px solid var(--line);color:var(--fg);
   border-radius:8px;padding:7px 10px;font-size:13px;white-space:nowrap;
@@ -104,7 +105,7 @@ button.b:disabled{opacity:.32}
 </head>
 <body>
 <header>
-  <span class="t">谷爱凌 · SMU 对谈（完整 41 分钟）</span>
+  <a class="t" href="index.html" title="回到材料列表">‹ 谷爱凌 · SMU 对谈（完整 41 分钟）</a>
   <button id="save" onclick="fetch(location.href).then(r=>r.blob()).then(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=document.title.replace(/·/g,'-').replace(/\s+/g,'')+'.html';document.body.appendChild(a);a.click();a.remove()}).catch(e=>alert('存不下来：'+e.message))">存到手机</button>
   <button id="open">目录</button>
 </header>
